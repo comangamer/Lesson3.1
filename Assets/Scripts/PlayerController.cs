@@ -13,7 +13,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dirtParticle;
     public AudioClip jumpSound;
     public AudioClip crashSound;
+    public AudioClip damageSound;
+    public AudioClip deathSound;
     private AudioSource playerAudio;
+    public int lives = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,15 +50,30 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-            
-            gameOver = true;
+
             playerAudio.PlayOneShot(crashSound, 1.0f);
-            Debug.Log("Game Over!");
-            playerAnim.SetBool("Death_b", true);
-            dirtParticle.Stop();
+            Destroy(collision.gameObject);
             explosionParticle.Play();
-            playerAnim.SetInteger("DeathType_int", 1);
             
+            lives--;
+
+            if (lives > 1) playerAudio.PlayOneShot(damageSound, 1.0f);
+
+            if (lives < 1)
+            {
+                gameOver = true;
+
+                Debug.Log("Game Over!");
+                playerAnim.SetBool("Death_b", true);
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(deathSound, 1.0f);
+                playerAnim.SetInteger("DeathType_int", 1);
+            }
+
+            
+
+            
+
         }
     }
 
