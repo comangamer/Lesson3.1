@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Obstacle
+  - Bonus
+  - Bullet
+  - Destroyer
   layers:
   - Default
   - TransparentFX

@@ -13,12 +13,34 @@ public class SpawnManager : MonoBehaviour
     private int spawnedMinesCount = 0;
     private const int MINES_THRESHOLD = 2; // Порог для начала уменьшения времени
 
+    // Переменные для спавна бонусов в виде мяса
+    public GameObject meatPrefab;
+    private Vector3 meatSpawnPos = new Vector3(25, 11, 0);
+    private float meatSpawnDelay = 5.0f;
+    private float meatSpawnInterval = 10.0f;
+
+
+
     private PlayerController playerControllerScript;
 
     void Start()
     {
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         SpawnObstacle();
+        SpawnBonus();
+
+    }
+
+    void SpawnBonus() {
+        if (playerControllerScript.gameOver == false)
+        {
+            // Создаем бонус
+            Instantiate(meatPrefab, meatSpawnPos, meatPrefab.transform.rotation);
+            // Получаем случайное время для следующего спавна
+            float nextSpawnTime = Random.Range(meatSpawnDelay, meatSpawnInterval);
+            // Рекурсивно вызываем следующий спавн
+            Invoke("SpawnBonus", nextSpawnTime);
+        }
     }
 
     void SpawnObstacle()
