@@ -286,7 +286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 791, y: -137}
+  m_AnchoredPosition: {x: 760, y: -351}
   m_SizeDelta: {x: 1040, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &151584694
@@ -373,7 +373,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 291254548}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1160,7 +1160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 37fa62df0e12aad45aff53c058f190ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fccf86febe0d7534da8447c8bd58e36e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

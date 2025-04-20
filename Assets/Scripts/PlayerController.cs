@@ -77,6 +77,11 @@ public class PlayerController : MonoBehaviour
             Instantiate(bulletPrefab, transform.position + Vector3.up * 3.5f, bulletPrefab.transform.rotation);
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         // Отображаем на экране количество жизней
         livesText.text = "Lives: " + lives.ToString();
 
