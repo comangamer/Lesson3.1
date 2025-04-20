@@ -361,7 +361,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2c3681783590bfa499a8059525e206d2, type: 3}
@@ -924,6 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 8637656520343693470, guid: fcd5aa6565776564b87c65a6beb02311, type: 3}
   meatPrefab: {fileID: 5025125170192005506, guid: f4dc8e826f642274bb18864933d0ff6d, type: 3}
+  currentLevel: 2
 --- !u!4 &715751425
 Transform:
   m_ObjectHideFlags: 0
@@ -1790,6 +1791,7 @@ MonoBehaviour:
   lives: 3
   livesText: {fileID: 0}
   bulletPrefab: {fileID: 1464496796423835801, guid: 4fbaf6bd3abdf7b4884517312d2ae7e0, type: 3}
+  currentLevel: 0
 --- !u!54 &1609776266
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -19,17 +19,26 @@ public class SpawnManager : MonoBehaviour
     private float meatSpawnDelay = 5.0f;
     private float meatSpawnInterval = 10.0f;
 
-
-
     private PlayerController playerControllerScript;
+
+    // Попытка сделать спавн объектов для уровней разными
+    [SerializeField] // Чтобы можно было настроить в инспекторе
+    private int currentLevel = 1; // Добавляем переменную уровня
+
 
     void Start()
     {
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         SpawnObstacle();
-        SpawnBonus();
+        
+        // Спавним бонусы только если уровень больше 1
+        if (currentLevel > 1)
+        {
+            SpawnBonus();
+        }
 
     }
+
 
     void SpawnBonus() {
         if (playerControllerScript.gameOver == false)

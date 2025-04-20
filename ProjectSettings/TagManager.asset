@@ -9,6 +9,9 @@ TagManager:
   - Bonus
   - Bullet
   - Destroyer
+  - Money
+  - Bomb
+  - DistanceWinTrigger
   layers:
   - Default
   - TransparentFX

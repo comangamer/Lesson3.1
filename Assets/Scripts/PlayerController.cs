@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,6 +33,12 @@ public class PlayerController : MonoBehaviour
 
     //Переменные для стрельбы
     public GameObject bulletPrefab;
+
+    // Переменные для победы по дистанции
+    public int currentLevel = 0;
+
+    // Переменные для победы по мясу
+    private int meatWinCondition = 20;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -94,6 +101,21 @@ public class PlayerController : MonoBehaviour
 
             bonusScore++;
             powerShots++;
+            
+            if (bonusScore >= meatWinCondition)
+            {
+                gameOver = true; // Устанавливаем флаг завершения игры
+                SceneManager.LoadScene("LevelTwoWin"); // Переход на сцену с победным экраном
+
+            }
+            
+        }
+
+        //Start distance win
+        if (collision.gameObject.CompareTag("DistanceWinTrigger"))
+        {
+            currentLevel = 1;
+            Destroy(collision.gameObject);
         }
 
 
@@ -113,7 +135,7 @@ public class PlayerController : MonoBehaviour
             
             lives--;
 
-            if (lives > 1)
+            if (lives > 0)
             {
                 playerAudio.PlayOneShot(damageSound, 1.0f);
 
