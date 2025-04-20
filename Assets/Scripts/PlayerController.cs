@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void GameOverTransition()
+    {
+        SceneManager.LoadScene("DeathScreen");
+    }
 
 
     private void OnCollisionEnter(Collision collision)
@@ -149,6 +153,8 @@ public class PlayerController : MonoBehaviour
                 dirtParticle.Stop();
                 playerAudio.PlayOneShot(deathSound, 1.0f);
                 playerAnim.SetInteger("DeathType_int", 1);
+
+                Invoke("GameOverTransition", 5f);
             }
 
             
