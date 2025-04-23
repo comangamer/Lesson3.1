@@ -1,11 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+Originally, the mechanics of successfully passed mines was the main game mechanic
+But after I decided to add a distance counter, it became a legacy
+ 
+ */
+
+
 public class MinesController : MonoBehaviour
 {
 
-    public int minesPassed = 0; // Переменная для хранения количества пройденных мин
-    public Text minesText; // Ссылка на UI-элемент для отображения количества пройденных мин
+
+
+
+    public int minesPassed = 0; // Variable for storing the number of passed mines
+    public Text minesText;      // Link to UI element for displaying the number of passed mines
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

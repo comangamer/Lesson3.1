@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// This is almost the same as in tutorial
 public class RepeatBackground : MonoBehaviour
 {
 

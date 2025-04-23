@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement; // Для загрузки сцен
 
 public class MainMenu : MonoBehaviour
 {
+    /*
+    Next code is working pretty simple
+    It loads the scene with the name of the string passed to it
 
-    //public GameObject AboutCanvas; // Ссылка на объект "О нас"
-    //public GameObject InstructionBG; // Ссылка на объект с инструкцией
+    */
+
 
     public void LevelChoose()
     {

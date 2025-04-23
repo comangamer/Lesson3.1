@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip powerShotSound;
     
     private AudioSource playerAudio;
-   
 
-    // Переменные для отображения информации на экране
+
+    // Variables for displaying information on the screen
     public int bonusScore = 0;
     public Text bonusText;
     public int powerShots = 0;
@@ -31,13 +31,13 @@ public class PlayerController : MonoBehaviour
     public int lives = 3;
     public Text livesText;
 
-    //Переменные для стрельбы
+    //Shooting variables
     public GameObject bulletPrefab;
 
-    // Переменные для победы по дистанции
+    // Variables for winning by distance
     public int currentLevel = 0;
 
-    // Переменные для победы по мясу
+    // Variables for winning on meat
     private int meatWinCondition = 20;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
-        // Получаем доступ к полю со значением жизней
+        // Gain access to the field with the value of lives
         livesText = GameObject.Find("LivesLeft").GetComponent<Text>();
-        // Получаем доступ к полю со значением павершотов
+        // Gaining access to the field with the value of pavershots
         powerShotsText = GameObject.Find("PowerShots").GetComponent<Text>();
-        // Получаем доступ к полю со значением очков
+        // Gain access to the field with the value of points
         bonusText = GameObject.Find("BonusScore").GetComponent<Text>();
 
     }
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Если нажат пробел и игрок на земле, то прыгаем
+        // If the space bar is pressed and the player is on the ground, then jump
         if ( Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
 
-        // Если нажат контрл и количество павершотов больше 0, то вычитаем один павершот и выпускаем снаряд
+        // If ctrl is pressed and the number of powershots is greater than 0, subtract one powershots and release the projectile
         if (Input.GetKeyDown(KeyCode.LeftControl) && powerShots > 0 && !gameOver)
         {
             powerShots--;
@@ -77,28 +77,29 @@ public class PlayerController : MonoBehaviour
             Instantiate(bulletPrefab, transform.position + Vector3.up * 3.5f, bulletPrefab.transform.rotation);
         }
 
+        // If the player presses the "Escape" key, go to the main menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
         }
 
-        // Отображаем на экране количество жизней
+        // Display the number of lives on the screen
         livesText.text = "Lives: " + lives.ToString();
 
-        // Отображаем на экране количество очков
+        // Display the number of points on the screen
         bonusText.text = "Meat collected: " + bonusScore.ToString();
 
-        // Отображаем на экране количество павершотов
+        // Display the number of powershots on the screen
         powerShotsText.text = "Power Shots: " + powerShots.ToString();
 
 
     }
 
+    // This method is called when the player dies
     private void GameOverTransition()
     {
         SceneManager.LoadScene("DeathScreen");
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -120,7 +121,9 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        //Start distance win
+        //Start distance win activator
+        // This one was used to make sure that the player is able to win by distance
+        // Later I realized another ways to do it, but come on, it's working so let it work
         if (collision.gameObject.CompareTag("DistanceWinTrigger"))
         {
             currentLevel = 1;
@@ -128,8 +131,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //Obstacle collision
-        //isOnGround = true;
+        // Ground collision
         if (collision.gameObject.CompareTag("Ground"))
         {
             dirtParticle.Play();
@@ -142,7 +144,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             explosionParticle.Play();
             
-            lives--;
+            lives--; // Decrease the number of lives by 1
 
             if (lives > 0)
             {
@@ -159,7 +161,7 @@ public class PlayerController : MonoBehaviour
                 playerAudio.PlayOneShot(deathSound, 1.0f);
                 playerAnim.SetInteger("DeathType_int", 1);
 
-                Invoke("GameOverTransition", 5f);
+                Invoke("GameOverTransition", 5f);   // Wait 5 seconds before going to the death screen
             }
 
             

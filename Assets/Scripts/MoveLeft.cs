@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ Basically the same script from tutorial
+ */
+
+
 public class MoveLeft : MonoBehaviour
 {
 
